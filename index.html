@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Даша - лучшая!</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #8b0000, #ff0000);
+            overflow: hidden;
+            font-family: 'Pacifico', cursive;
+        }
+
+        .text-container {
+            position: relative;
+            text-align: center;
+        }
+
+        .glowing-text {
+            font-size: 5em;
+            color: #fff;
+            text-shadow: 0 0 10px #fff,
+                         0 0 20px #8b0000,
+                         0 0 30px #8b0000,
+                         0 0 40px #8b0000;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .flowers {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #fff,
+                           0 0 20px #8b0000,
+                           0 0 30px #8b0000;
+            }
+            to {
+                text-shadow: 0 0 20px #fff,
+                           0 0 30px #ff0000,
+                           0 0 40px #ff0000,
+                           0 0 50px #ff0000;
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(139, 0, 0, 0.6);
+            border-radius: 50%;
+            animation: particle linear infinite;
+        }
+
+        @keyframes particle {
+            0% { transform: translateY(0) scale(0); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    <div class="text-container">
+        <div class="glowing-text floating">
+            Даша - лучшая!
+        </div>
+    </div>
+
+    <script>
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = particle.style.height = 
+                    Math.random() * 5 + 2 + 'px';
+                particle.style.animationDuration = 
+                    Math.random() * 3 + 2 + 's';
+                particles.appendChild(particle);
+            }
+        }
+        createParticles();
+    </script>
+</body>
+</html>
